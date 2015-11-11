@@ -24,6 +24,10 @@ cd -
  setJava
 
  cd "$DIR/tomcat/bin"
- export CATALINA_OPTS="-Xms256m -Xmx768m -XX:MaxPermSize=256m -Dfile.encoding=UTF-8 -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true -Djava.awt.headless=true"
+ JAVA_HEAP_MAX=${JAVA_HEAP_MAX:-768m}
+ JAVA_HEAP_MIN=${JAVA_HEAP_MIN:-256m}
+ DEFAULT_CATALINA_OPTS="-Xms${JAVA_HEAP_MIN} -Xmx${JAVA_HEAP_MAX} -XX:MaxPermSize=256m -Dfile.encoding=UTF-8 -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true -Djava.awt.headless=true"
+ export CATALINA_OPTS=${CATALINA_OPTS:-${DEFAULT_CATALINA_OPTS}}
+ echo "Catalina Options: ${CATALINA_OPTS}"
  JAVA_HOME=$_JAVA_HOME
  exec sh catalina.sh run

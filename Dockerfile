@@ -5,7 +5,7 @@ ENV JAVA_TOOL_OPTIONS -Dfile.encoding=UTF8
 
 ADD https://github.com/OSBI/saiku/archive/saiku-3.5.zip saiku-server.zip
 RUN unzip saiku-server.zip \
-    && mv saiku-saiku-3.5 saiku-build
+    && mv saiku-saiku-3.5 saiku-build \
     && rm saiku-server.zip
 
 WORKDIR /saiku-build
